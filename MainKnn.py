@@ -1,5 +1,9 @@
 import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 from sklearn import datasets
+from sklearn.datasets import load_iris
 from  sklearn.model_selection import train_test_split
 from knn_scratch import SimpleKNN
 
@@ -30,4 +34,12 @@ print("Gercek Sonuc: ",y_test[:20])
 basari = np.sum(predicts== y_test) / len(y_test)
 
 print(f"Yeni Başarı Oranı: %{basari * 100:.2f}")
+
+
+plt.figure(figsize=(10, 6))
+plt.scatter(X_test[:, 0], X_test[:, 1], c=predicts, cmap='rainbow')
+plt.title("KNN Tahmin Görselleştirmesi")
+plt.xlabel("Sepal Length (Normalize)")
+plt.ylabel("Sepal Width (Normalize)")
+plt.savefig("KNN_Sonuc_grafigi.png")
 
